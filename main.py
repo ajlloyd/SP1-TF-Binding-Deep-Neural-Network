@@ -6,7 +6,7 @@ import numpy as np
 
 print(os.getcwd())
 np.random.seed(42)
-raw_data = pd.read_csv("./sp1-data/Raw_data.csv").values
+raw_data = pd.read_csv("./Raw_data.csv").values
 
 def base_to_numeric(base_data):
     sequences = base_data[:,0]
