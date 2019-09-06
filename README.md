@@ -1,1 +1,1 @@
-# SP1-TF-Deep-Neural_Network
+# SP1-TF-Deep-Neural-Network
