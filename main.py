@@ -15,7 +15,7 @@ raw_data = pd.read_csv("./Raw_data.csv").values
 def base_to_numeric(base_data):
     sequences = base_data[:,0]
     labels = base_data[:,1]
-    conversion = {"A" : [0,0], "T" : [0,1], "C" : [1,0], "G" : [1,1]}
+    conversion = {"A" : [1,0,0], "T" : [1,0,1], "C" : [1,1,0], "G" : [1,1,1]}
     # Sequence Conversion (to Numeical):
     converted_data = []
     for sequence in sequences:
@@ -51,9 +51,9 @@ def train_test_split(data, test_size=0.2):
 X_train, X_test, y_train, y_test = train_test_split(processed_data, test_size=0.2)
 
 layers = [3, 4, 5]
-nodes = [256, 384]
+nodes = [384, 448]
 activations = ["relu"]
-dropouts = [0.1, 0.15, 0.2]
+dropouts = [0.1, 0.15]
 
 for n_layers in layers:
     for n_nodes in nodes:
@@ -70,4 +70,4 @@ for n_layers in layers:
 
                 model.add(Dense(1, activation="sigmoid"))
                 model.compile(loss='binary_crossentropy', optimizer='adam',metrics=['accuracy'])
-                model.fit(X_train,y_train,epochs=20, validation_split=0.1, callbacks=[tensorboard])
+                model.fit(X_train,y_train,epochs=10, validation_split=0.2, callbacks=[tensorboard])
