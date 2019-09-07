@@ -51,13 +51,11 @@ def train_test_split(data, test_size=0.2):
 X_train, X_test, y_train, y_test = train_test_split(processed_data, test_size=0.2)
 
 layers = [3, 4, 5]
-nodes = [128, 256, 384]
-activations = ["relu", "sigmoid"]
+nodes = [256, 384]
+activations = ["relu"]
 dropouts = [0.1, 0.15, 0.2]
 
-print("sss")
-
-"""for n_layers in layers:
+for n_layers in layers:
     for n_nodes in nodes:
         for activation in activations:
             for dropout in dropouts:
@@ -65,10 +63,11 @@ print("sss")
                 tensorboard = TensorBoard(log_dir=".\logs\\{}".format(NAME))
 
                 model = Sequential()
+                model.add(Input((X_train.shape[1:])))
                 for i in range(n_layers):
                     model.add(Dense(n_nodes, activation=activation))
                     model.add(Dropout(dropout))
 
                 model.add(Dense(1, activation="sigmoid"))
                 model.compile(loss='binary_crossentropy', optimizer='adam',metrics=['accuracy'])
-                model.fit(X_train,y_train,epochs=20, validation_split=0.1, callbacks=[tensorboard])"""
+                model.fit(X_train,y_train,epochs=20, validation_split=0.1, callbacks=[tensorboard])
